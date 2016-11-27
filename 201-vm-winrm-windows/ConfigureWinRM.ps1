@@ -82,7 +82,7 @@ function Add-FirewallException
 #                                              Configure WinRM                                                                  #
 #################################################################################################################################
 
-$winrmHttpsPort=5986
+$winrmHttpsPort=443
 
 # Configure https listener
 Configure-WinRMHttpsListener $HostName $port
