@@ -4,6 +4,7 @@
     "parameters": {
         "adminUsername": {
             "type": "string",
+            "defaultValue": "pschallaege",
             "metadata": {
                "description": "Username for the Virtual Machine."
             }
@@ -16,6 +17,7 @@
         },
         "dnsLabelPrefix": {
             "type": "string",
+            "defaultValue": "pschallenge",
             "metadata": {
                   "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
             }
@@ -34,37 +36,44 @@
         },
         "vmName": {
             "type": "string",
-            "defaultValue": "MyWindowsVM",
+            "defaultValue": "psc01",
             "metadata": {
                 "description": "The name for the VM."
             }
         },
         "nicName": {
             "type": "string",
-            "defaultValue": "myVMNic",
+            "defaultValue": "psc01Nic",
             "metadata": {
                 "description": "The name for the VM's NIC."
             }
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "MyVNET",
+            "defaultValue": "pschallengeVNET",
             "metadata": {
                 "description": "The name for the VM's VNET."
             }
         },
         "publicIPAddressName": {
             "type": "string",
-            "defaultValue": "myPublicIP",
+            "defaultValue": "psc01PublicIP",
             "metadata": {
                 "description": "The name for the VM's public IP."
             }
         },
         "subnetName": {
             "type": "string",
-            "defaultValue": "Subnet",
+            "defaultValue": "pschallangeSubnet",
             "metadata": {
                 "description": "The name for the VM's Subnet."
+            }
+        },
+        "publicDNSname": {
+            "type": "string",
+            "defaultValue": "challenge.pskickstart.com",
+            "metadata": {
+                "description": "The public DNS name for the certificate."
             }
         }
     },
@@ -215,11 +224,11 @@
                      "typeHandlerVersion": "1.4",
                      "settings": {
 						 "fileUris": [ 
-									"https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/ConfigureWinRM.ps1",
-									"https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/makecert.exe",
-									"https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/winrmconf.cmd"
+									"https://raw.githubusercontent.com/Ulfvins/azure-quickstart-templates/master/201-vm-winrm-windows/ConfigureWinRM.ps1",
+									"https://raw.githubusercontent.com/Ulfvins/azure-quickstart-templates/master/201-vm-winrm-windows/makecert.exe",
+									"https://raw.githubusercontent.com/Ulfvins/azure-quickstart-templates/master/201-vm-winrm-windows/winrmconf.cmd"
 								],
-						 "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ConfigureWinRM.ps1 ',variables('hostDNSNameScriptArgument'))]"
+						 "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ConfigureWinRM.ps1 ',parameters('publicDNSname'))]"
                      }
                  }
               }
